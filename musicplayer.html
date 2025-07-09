@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chill Tamil Music</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #d299c2, #fef9d7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .music-box {
+      width: 340px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+      text-align: center;
+    }
+
+    .music-box img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      margin-bottom: 15px;
+    }
+
+    .track-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .track-artist {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 20px;
+    }
+
+    audio {
+      width: 100%;
+      outline: none;
+      margin-top: 10px;
+    }
+
+    .buttons {
+      margin-top: 15px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .control-btn {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .control-btn:hover {
+      background: rgba(255, 255, 255, 0.35);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="music-box">
+    <img id="artwork" src="" alt="Album Art" />
+    <div class="track-title" id="trackName">Track Name</div>
+    <div class="track-artist" id="trackArtist">Artist</div>
+    <audio id="player" controls>
+      <source src="" type="audio/mp3" />
+      Your browser does not support audio playback.
+    </audio>
+    <div class="buttons">
+      <button class="control-btn" onclick="prev()">⏮️</button>
+      <button class="control-btn" onclick="play()">▶️</button>
+      <button class="control-btn" onclick="pause()">⏸️</button>
+      <button class="control-btn" onclick="next()">⏭️</button>
+    </div>
+  </div>
+
+  <script>
+    const player = document.getElementById('player');
+    const trackName = document.getElementById('trackName');
+    const trackArtist = document.getElementById('trackArtist');
+    const artwork = document.getElementById('artwork');
+
+    const tracks = [
+      {
+        name: "Munbe Vaa",
+        artist: "Shreya Ghoshal, Naresh Iyer",
+        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+        img: "https://i.ytimg.com/vi/Y5y_Npp4j2M/maxresdefault.jpg"
+      },
+      {
+        name: "Enjoy Enjaami",
+        artist: "Dhee, Arivu",
+        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
+        img: "https://i.ytimg.com/vi/eYq7WapuDLU/maxresdefault.jpg"
+      },
+      {
+        name: "Thaai Kelavi",
+        artist: "Anirudh",
+        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3",
+        img: "https://i.ytimg.com/vi/ZbYrQrJvMO4/maxresdefault.jpg"
+      }
+    ];
+
+    let current = 0;
+
+    function loadTrack(i) {
+      const t = tracks[i];
+      trackName.textContent = t.name;
+      trackArtist.textContent = t.artist;
+      player.src = t.src;
+      artwork.src = t.img;
+      player.load();
+    }
+
+    function play() {
+      player.play();
+    }
+
+    function pause() {
+      player.pause();
+    }
+
+    function next() {
+      current = (current + 1) % tracks.length;
+      loadTrack(current);
+      play();
+    }
+
+    function prev() {
+      current = (current - 1 + tracks.length) % tracks.length;
+      loadTrack(current);
+      play();
+    }
+
+    // Initialize first track
+    window.onload = () => {
+      loadTrack(current);
+    };
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Glass Gallery</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1000px;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-item {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 15px;
+      backdrop-filter: blur(8px);
+      overflow: hidden;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.05);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      display: block;
+    }
+
+    .caption {
+      padding: 10px;
+      text-align: center;
+      color: white;
+      font-weight: bold;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+    }
+
+    .lightbox:target {
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="#img1" class="gallery-item">
+      <img src="https://picsum.photos/id/1003/400/300" alt="Mountain View">
+      <div class="caption">Mountain View</div>
+    </a>
+    <a href="#img2" class="gallery-item">
+      <img src="https://picsum.photos/id/1018/400/300" alt="Forest River">
+      <div class="caption">Forest River</div>
+    </a>
+    <a href="#img3" class="gallery-item">
+      <img src="https://picsum.photos/id/1024/400/300" alt="Golden Retriever">
+      <div class="caption">Golden Retriever</div>
+    </a>
+    <a href="#img4" class="gallery-item">
+      <img src="https://picsum.photos/id/1056/400/300" alt="Beach Vibes">
+      <div class="caption">Beach Vibes</div>
+    </a>
+  </div>
+
+  <!-- Lightbox Sections -->
+  <div id="img1" class="lightbox">
+    <a href="#"><img src="https://picsum.photos/id/1003/800/600" alt="Mountain View"></a>
+  </div>
+  <div id="img2" class="lightbox">
+    <a href="#"><img src="https://picsum.photos/id/1018/800/600" alt="Forest River"></a>
+  </div>
+  <div id="img3" class="lightbox">
+    <a href="#"><img src="https://picsum.photos/id/1024/800/600" alt="Golden Retriever"></a>
+  </div>
+  <div id="img4" class="lightbox">
+    <a href="#"><img src="https://picsum.photos/id/1056/800/600" alt="Beach Vibes"></a>
+  </div>
+</body>
+</html>
